@@ -3,8 +3,8 @@ let fileName;
 let jsonContent;
 
 const input = document.getElementById("input");
-const upload = document.getElementById("upload");
-const download = document.getElementById("download");
+const convert = document.getElementById("convert");
+const viewOutput = document.getElementById("output");
 
 function checkExtension(exts) {
   return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(input.value);
@@ -21,7 +21,7 @@ input.addEventListener("change", (event) => {
       closeOnEscape: true,
       closeOnClick: true,
       displayMode: 2,
-      position: "bottomLeft",
+      position: "bottomCenter",
       timeout: 5000,
     });
 
@@ -38,7 +38,7 @@ let data = [{
   "abc": "sdef"
 }]
 
-upload.addEventListener("click", () => {
+convert.addEventListener("click", () => {
   if (!selectedFile) {
     iziToast.warning({
       title: "Perhatian",
@@ -47,7 +47,7 @@ upload.addEventListener("click", () => {
       closeOnEscape: true,
       closeOnClick: true,
       displayMode: 2,
-      position: "bottomLeft",
+      position: "bottomCenter",
       timeout: 5000,
     });
   } else {
@@ -64,34 +64,29 @@ upload.addEventListener("click", () => {
       workbook.SheetNames.forEach(sheet => {
         let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
         jsonContent = JSON.stringify(rowObject, undefined, 4);
-        document.getElementById("output").innerHTML = jsonContent;
-
-        download.disabled = false;
+        viewOutput.innerHTML = fileName + "<hr>" + jsonContent;
       });
     }
-  }
-});
 
-download.addEventListener("click", () => {
-  if (!selectedFile) {
-    iziToast.error({
-      title: "Error",
-      message: "Anda belum memilih file!",
-      layout: 2,
-      closeOnEscape: true,
-      closeOnClick: true,
-      displayMode: 2,
-      position: "bottomLeft",
-      timeout: 5000,
-    });
-  } else {
     const a = document.createElement('a');
     const file = new Blob([jsonContent], {
       type: "application/json"
     });
+
     a.href = URL.createObjectURL(file);
     a.download = fileName + ".json";
     a.click();
     URL.revokeObjectURL(a.href);
+
+    iziToast.success({
+      title: "Sukses",
+      message: "Proses convert file ke JSON berhasil!",
+      layout: 2,
+      closeOnEscape: true,
+      closeOnClick: true,
+      displayMode: 2,
+      position: "bottomCenter",
+      timeout: 5000,
+    });
   }
 });

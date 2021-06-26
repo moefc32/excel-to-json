@@ -22,6 +22,7 @@ body {
 
 .form {
   width: 500px;
+  margin: 15px;
   padding: 15px;
   background: #fff;
   line-height: 1.618em;
@@ -30,15 +31,16 @@ body {
   box-shadow: 0 5px 20px 5px rgba(0, 0, 0, .2);
 }
 
-.form #input {
-  float: left;
+#input {
+  display: block;
 }
 
-.form button {
-  float: right;
+#convert {
+  display: block;
+  margin-top: 5px;
 }
 
-.form #output {
+#output {
   float: left;
   width: 100%;
   height: 200px;
@@ -47,11 +49,29 @@ body {
   overflow-y: scroll;
   background: #002B36;
   color: #fff;
+  unicode-bidi: embed;
   font-family: monospace;
+  white-space: pre-wrap;
   font-size: .75rem;
   line-height: 1rem;
+  word-wrap: break-word;
 }
 
-.form #output::before {
+#output::before {
   content: "Output :\A\A";
+}
+
+#output hr {
+  margin: 1.5em 0;
+}
+
+@media screen and (min-width: 550px) {
+  #input {
+    float: left;
+  }
+
+  #convert {
+    float: right;
+    margin: 0;
+  }
 }

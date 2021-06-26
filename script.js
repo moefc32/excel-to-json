@@ -14,7 +14,7 @@ input.addEventListener("change", (event) => {
   selectedFile = event.target.files[0];
 
   if (selectedFile && !checkExtension(['.xls', '.xlsx'])) {
-    iziToast.warning({
+    iziToast.error({
       title: "Error",
       message: "File tidak valid, pastikan memilih file .xls atau .xlsx!",
       layout: 2,
@@ -41,7 +41,7 @@ let data = [{
 upload.addEventListener("click", () => {
   if (!selectedFile) {
     iziToast.warning({
-      title: "Error",
+      title: "Perhatian",
       message: "Anda belum memilih file!",
       layout: 2,
       closeOnEscape: true,

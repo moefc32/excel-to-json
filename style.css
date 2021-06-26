@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none !important;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  background: url("texture.png") fixed,
+    linear-gradient(to bottom left, #2196f3, #4caf50) fixed;
+  background-size: cover;
+  color: #424242;
+}
+
+.form {
+  width: 500px;
+  padding: 15px;
+  background: #fff;
+  line-height: 1.618em;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px 5px rgba(0, 0, 0, .2);
+}
+
+#input {
+  float: left;
+}
+
+#upload {
+  float: right;
+}
+
+#jsondata {
+  float: left;
+  width: 100%;
+  height: 200px;
+  margin: 15px 0 0;
+  padding: 5px;
+  overflow-y: scroll;
+  background: #002B36;
+  color: #fff;
+  font-family: monospace;
+  font-size: .75rem;
+  line-height: 1rem;
+}
+
+#jsondata::before {
+  content: "Output :\A\A";
+}
